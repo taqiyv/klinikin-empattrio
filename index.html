@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Klinikin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div class="h-[400vh] bg-slate-100">
+    <!-- navbar -->
+    <div class="flex justify-between items-center h-16 bg-gradient-to-tr from-[#d31027] via-[#ea384d] to-[#7e0d14] sticky top-0 z-50">
+      <h1 class="ml-10 text-white font-bold text-xl">Klinikin</h1>
+      <div class="flex space-x-8 mr-10">
+        <button class="text-white font-medium text-xs hover:text-sm transition-all">Beranda</button>
+        <button class="text-white font-medium text-xs hover:text-sm transition-all">Klinik</button>
+        <button class="text-white font-medium text-xs hover:text-sm transition-all">Form Pasien</button>
+        <button class="relative text-white font-medium text-xs transition-all bg-gradient-to-br from-[#232526] via-[#2b2b2c] to-[#17191a] px-3 py-2 rounded-lg overflow-hidden group">
+          <span class="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+          <span class="relative group-hover:text-[#d31027]">Login</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- home -->
+    <div class="h-72 flex flex-col items-center justify-center text-slate-600 font-bold">
+      <h1 class="text-slate-800 font-bold text-4xl mt-10">Selamat datang, <span class="bg-gradient-to-r from-[#fad0c4] via-[#ffd1ff] to-[#f48fb1] text-red-900"><span class="bg-gradient-to-tr from-[#d31027] via-[#ea384d] to-[#7e0d14] text-transparent bg-clip-text italic">Orang sakit</span></span></h1>
+      
+      <div class="mt-10 text-lg flex flex-co justify-center items-center">
+        <h1>Lagi sakit ?</h1>
+        <button class="px-2 ml-3 rounded-r-lg mt-1 bg-gradient-to-tl from-[#d31027] via-[#ea384d] to-[#ff7c85] hover:shadow-md hover:shadow-pink-300 transition-all duration-200 text-white">
+          Periksa sekarang !
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- informasi kesehatan -->
+    <div class="h-96 flex justify-center -mt-4"> 
+      <div class="bg-gradient-to-br from-white to-slate-200 my-5 w-[90%] rounded-xl px-4 border">
+        <h1 class="pt-5 font-bold text-xl text-slate-700">Informasi Kesehatan</h1>
+        <div class="grid grid-cols-4 gap-4 mt-4">
+          <div class="bg-white h-64 max-w-sm border rounded-md overflow-hidden hover:border-slate-400 group">
+              <img class=" object-cover w-full h-[50%]" src="kesemutan.jpg" alt="">
+              <p class="text-slate-700 font-bold mx-2 mt-1.5 text-sm group-hover:text-[#ea384d]">7 Fakta tentang Kesemutan</p>
+              <p class="text-slate-400 text-xs mx-2 mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit atque tempora voluptatum delectus temporibus dicta, quisquam ratione?</p>
+          </div>
+          <div class="bg-white h-64 max-w-sm border rounded-md overflow-hidden hover:border-slate-400 group">
+            <img class=" object-cover w-full h-[50%]" src="kesemutan.jpg" alt="">
+            <p class="text-slate-700 font-bold mx-2 mt-1.5 text-sm group-hover:text-[#ea384d] ">7 Fakta tentang Kesemutan</p>
+            <p class="text-slate-400 text-xs mx-2 mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit atque tempora voluptatum delectus temporibus dicta, quisquam ratione?</p>
+          </div>
+          <div class="bg-white h-64 max-w-sm border rounded-md overflow-hidden hover:border-slate-400 group">
+            <img class=" object-cover w-full h-[50%]" src="kesemutan.jpg" alt="">
+            <p class="text-slate-700 font-bold mx-2 mt-1.5 text-sm group-hover:text-[#ea384d]">7 Fakta tentang Kesemutan</p>
+            <p class="text-slate-400 text-xs mx-2 mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit atque tempora voluptatum delectus temporibus dicta, quisquam ratione?</p>
+          </div>
+          <div class="bg-white h-64 max-w-sm border rounded-md overflow-hidden hover:border-slate-400 group">
+            <img class=" object-cover w-full h-[50%]" src="kesemutan.jpg" alt="">
+            <p class="text-slate-700 font-bold mx-2 mt-1.5 text-sm group-hover:text-[#ea384d]">7 Fakta tentang Kesemutan</p>
+            <p class="text-slate-400 text-xs mx-2 mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit atque tempora voluptatum delectus temporibus dicta, quisquam ratione?</p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- rekomendasi klinik -->
+    <div class="h-[1400px] md:h-[780px] lg:h-[460px] flex justify-center mt-4 mx-auto"> 
+      <div class="bg-gradient-to-br from-white to-slate-200 my-5 w-[90%] rounded-xl px-4 border">
+        <h1 class="pt-5 font-bold text-xl text-slate-700 mb-2">Rekomendasi Klinik</h1>
+        <form class="mb-3">   
+          <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+          <div class="relative">
+              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">    
+              </div>
+              <input type="search" id="search" class="block w-full p-4 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-[#ff7c85] focus:border-[#ff7c85] " placeholder="Cari Klinik..."/>
+              <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-[#ea384d] hover:bg-[#d31027] focus:ring-2 focus:outline-none focus:ring-[#ff7c85] font-medium rounded-lg text-sm px-4 py-2 ">
+                <svg class="w-4 h-4 text-slate-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+              </svg>
+              </button>
+          </div>
+        </form>
+
+        <div class="flex justify-evenly">
+          <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-9">
+            <!-- Clinic Card 1 -->
+            <div class="w-full bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
+                <img src="kesemutan.jpg" alt="City Medical Center" class="w-full h-32 object-cover">
+                <div class="p-3">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-sm font-bold text-gray-900">City Medical Center</h3>
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded-full">Open</span>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                        </svg>
+                        <span class="ml-1 text-xs text-gray-600">4.8 (256 reviews)</span>
+                    </div>
+                    <p class="text-xs text-gray-600 mb-2">123 Main Street, Downtown</p>
+                    <div class="flex flex-wrap gap-1 mb-2">
+                        <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-0.5 rounded">General</span>
+                        <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-0.5 rounded">Pediatric</span>
+                    </div>
+                    <button class="w-full bg-[#ea384d] hover:bg-[#d31027] text-white text-xs font-medium py-1.5 px-3 rounded-lg transition-colors">
+                        Book Appointment
+                    </button>
+                </div>
+            </div>
+        
+            <!-- Clinic Card 2 -->
+            <div class="w-full bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
+                <img src="kesemutan.jpg" alt="Wellness Clinic" class="w-full h-32 object-cover">
+                <div class="p-3">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-sm font-bold text-gray-900">Wellness Clinic</h3>
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded-full">Open</span>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                        </svg>
+                        <span class="ml-1 text-xs text-gray-600">4.6 (189 reviews)</span>
+                    </div>
+                    <p class="text-xs text-gray-600 mb-2">456 Park Avenue, Uptown</p>
+                    <div class="flex flex-wrap gap-1 mb-2">
+                        <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-0.5 rounded">Dental</span>
+                        <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-0.5 rounded">Dermatology</span>
+                    </div>
+                    <button class="w-full bg-[#ea384d] hover:bg-[#d31027] text-white text-xs font-medium py-1.5 px-3 rounded-lg transition-colors">
+                        Book Appointment
+                    </button>
+                </div>
+            </div>
+        
+            <!-- Clinic Card 3 -->
+            <div class="w-full bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
+                <img src="kesemutan.jpg" alt="Family Health Center" class="w-full h-32 object-cover">
+                <div class="p-3">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-sm font-bold text-gray-900">Family Health Center</h3>
+                        <span class="bg-red-100 text-red-800 text-xs font-medium px-2 py-0.5 rounded-full">Closed</span>
+                    </div>
+                    <div class="flex items-center mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                        </svg>
+                        <span class="ml-1 text-xs text-gray-600">4.9 (312 reviews)</span>
+                    </div>
+                    <p class="text-xs text-gray-600 mb-2">789 Oak Street, Westside</p>
+                    <div class="flex flex-wrap gap-1 mb-2">
+                        <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-0.5 rounded">General</span>
+                        <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-0.5 rounded">Cardiology</span>
+                    </div>
+                    <button class="w-full bg-[#ea384d] hover:bg-[#d31027] text-white text-xs font-medium py-1.5 px-3 rounded-lg transition-colors">
+                        Book Appointment
+                    </button>
+                </div>
+            </div>
+      
+            <!-- Clinic Card 4 -->
+            <div class="w-full bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
+              <img src="kesemutan.jpg" alt="Family Health Center" class="w-full h-32 object-cover">
+              <div class="p-3">
+                  <div class="flex justify-between items-start mb-1">
+                      <h3 class="text-sm font-bold text-gray-900">Family Health Center</h3>
+                      <span class="bg-red-100 text-red-800 text-xs font-medium px-2 py-0.5 rounded-full">Closed</span>
+                  </div>
+                  <div class="flex items-center mb-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                      </svg>
+                      <span class="ml-1 text-xs text-gray-600">4.9 (312 reviews)</span>
+                  </div>
+                  <p class="text-xs text-gray-600 mb-2">789 Oak Street, Westside</p>
+                  <div class="flex flex-wrap gap-1 mb-2">
+                      <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-0.5 rounded">General</span>
+                      <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-0.5 rounded">Cardiology</span>
+                  </div>
+                  <button class="w-full bg-[#ea384d] hover:bg-[#d31027] text-white text-xs font-medium py-1.5 px-3 rounded-lg transition-colors">
+                      Book Appointment
+                  </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- faq -->
+    <div>
+      <section id="faq" class="py-16">
+        <div class="container-custom">
+            <div class="text-center mb-12">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">FAQ</h2>
+                <p class="text-sm text-gray-700 max-w-3xl mx-auto">
+                    Temukan jawaban atas pertanyaan umum seputar kesehatan, klinik, dan layanan kami.
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto text-sm">
+                <!-- FAQ Item 1 -->
+                <div class="mb-6">
+                    <button class="flex justify-between items-center w-full text-left font-medium text-white bg-[#ea384d] p-5 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500" onclick="toggleFAQ(this)">
+                        <span>Bagaimana Klinikin merekomendasikan klinik?</span>
+                        <svg class="w-5 h-5 text-white transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="hidden mt-2 p-5 bg-white rounded-lg">
+                        <p class="text-gray-700">
+                            Klinikin menggunakan data lokasi, preferensi, dan ulasan pengguna untuk memberikan rekomendasi klinik yang sesuai. Algoritma kami mempertimbangkan jarak, spesialisasi, ketersediaan, dan penilaian pengguna dalam memberikan rekomendasi terbaik.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="mb-6">
+                    <button class="flex justify-between items-center w-full text-left font-medium text-white bg-[#ea384d] p-5 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500" onclick="toggleFAQ(this)">
+                        <span>Apakah saya bisa membuat janji melalui Klinikin?</span>
+                        <svg class="w-5 h-5 text-white transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="hidden mt-2 p-5 bg-white rounded-lg">
+                        <p class="text-gray-700">
+                            Ya, Anda bisa membuat janji langsung melalui platform kami. Setelah menemukan klinik yang sesuai, Anda dapat melihat ketersediaan jadwal dan melakukan pemesanan dengan mudah. Konfirmasi akan dikirim melalui email dan SMS.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="mb-6">
+                    <button class="flex justify-between items-center w-full text-left font-medium text-white bg-[#ea384d] p-5 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500" onclick="toggleFAQ(this)">
+                        <span>Bagaimana cara mengakses rekam medis saya?</span>
+                        <svg class="w-5 h-5 text-white transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="hidden mt-2 p-5 bg-white rounded-lg">
+                        <p class="text-gray-700">
+                            Anda dapat mengakses rekam medis melalui profil pengguna setelah masuk ke akun Anda. Jika klinik telah terintegrasi dengan Klinikin, Anda bisa melihat riwayat kunjungan, resep, dan hasil tes medis.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="mb-6">
+                    <button class="flex justify-between items-center w-full text-left font-medium text-white bg-[#ea384d] p-5 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500" onclick="toggleFAQ(this)">
+                        <span>Apakah informasi kesehatan saya aman di Klinikin?</span>
+                        <svg class="w-5 h-5 text-white transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="hidden mt-2 p-5 bg-white rounded-lg">
+                        <p class="text-gray-700">
+                            Ya, kami sangat menjaga keamanan data Anda. Semua informasi kesehatan dienkripsi dan disimpan dengan standar keamanan yang tinggi sesuai dengan peraturan privasi kesehatan.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="mb-6">
+                    <button class="flex justify-between items-center w-full text-left font-medium text-white bg-[#ea384d] p-5 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500" onclick="toggleFAQ(this)">
+                        <span>Bisakah saya memberikan ulasan untuk klinik yang saya kunjungi?</span>
+                        <svg class="w-5 h-5 text-white transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="hidden mt-2 p-5 bg-white rounded-lg">
+                        <p class="text-gray-700">
+                            Kami sangat mendorong pengguna untuk berbagi pengalaman dengan memberikan ulasan mengenai klinik yang telah dikunjungi. Ulasan Anda membantu pengguna lain dalam membuat keputusan yang lebih baik.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    </div>
+    
+    <div>
+      <form class="max-w-lg mx-auto bg-slate-100 p-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Formulir Pendaftaran Pasien</h2>
+        
+        <label class="block text-lg text-gray-800 mb-2" for="nama">Nama</label>
+        <input type="text" id="nama" name="nama" class="w-full p-3 border rounded-md focus:ring-2 focus:ring-[#ea384d] focus:outline-none mb-4">
+        
+        <label class="block text-lg text-gray-800 mb-2" for="telp">Nomor Telepon</label>
+        <input type="tel" id="telp" name="telp" class="w-full p-3 border rounded-md focus:ring-2 focus:ring-[#ea384d] focus:outline-none mb-4">
+        
+        <label class="block text-lg text-gray-800 mb-2" for="keluhan">Keluhan</label>
+        <textarea id="keluhan" name="keluhan" rows="4" class="w-full p-3 border rounded-md focus:ring-2 focus:ring-[#ea384d] focus:outline-none mb-6"></textarea>
+        
+        <button type="submit" class="w-full bg-[#ea384d] text-white py-3 rounded-md text-lg font-medium hover:bg-red-600 transition">Kirim</button>
+    </form>
+    </div>
+
+  </div>
+
+  <div class="h-80 bg-slate-700">
+
+  </div>
+
+  <script>
+    function toggleFAQ(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+  </script>
+
+</body>
+</html>
