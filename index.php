@@ -12,13 +12,13 @@
   <div class="flex justify-between items-center h-16 bg-gradient-to-tr from-[#d31027] via-[#ea384d] to-[#7e0d14] sticky top-0 z-50">
         <h1 class="ml-10 text-white font-bold text-xl">Klinikin</h1>
         <div class="flex space-x-8 mr-10">
-          <a href="#home" class="text-white font-medium text-xs hover:text-sm transition-all flex items-center">Beranda</a>
+          <a href="#" class="text-white font-medium text-xs hover:text-sm transition-all flex items-center">Beranda</a>
           <a href="#rekom" class="text-white font-medium text-xs hover:text-sm transition-all flex items-center">Klinik</a>
           <a href="#form-pasien" class="text-white font-medium text-xs hover:text-sm transition-all flex items-center">Form Pasien</a>
-          <a class="relative text-white font-medium text-xs transition-all bg-gradient-to-br from-[#232526] via-[#2b2b2c] to-[#17191a] px-3 py-2 rounded-lg overflow-hidden group flex items-center">
+          <div class="relative text-white font-medium text-xs transition-all bg-gradient-to-br from-[#232526] via-[#2b2b2c] to-[#17191a] px-3 py-2 rounded-lg overflow-hidden group flex items-center">
             <span class="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-            <span class="relative group-hover:text-[#d31027]">Login</span>
-          </a>
+            <a href="login.php" class="relative group-hover:text-[#d31027]">Login</a>
+          </div>
         </div>
   </div>
 
@@ -383,7 +383,7 @@
                     <div class="mt-6">
                         <h4 class="text-sm font-semibold mb-3">Daftarkan Klinik Kamu Sekarang</h4>
                         <div class="">
-                            <a href="dashboard.html" class="bg-[#ea384d] hover:bg-[#6d1b25] text-white px-4 py-1 rounded-lg transition-colors text-sm font-semibold">
+                            <a href="register_klinik.php" class="bg-[#ea384d] hover:bg-[#6d1b25] text-white px-4 py-1 rounded-lg transition-colors text-sm font-semibold">
                                 Daftar
                             </a>
                         </div>
