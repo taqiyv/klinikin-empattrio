@@ -1,9 +1,59 @@
-import axios from "axios";
+"use client";
 
-export default async function KlinikPage(context) {
-  const { id } = await context.params;
-  const response = await axios.get(`http://localhost:4001/api/klinik/${id}`);
-  const klinik = response.data;
+import { useState, useEffect } from "react";
+import API from "@/lib/api";
+import { use } from "react";
+
+export default function KlinikPage({ params }) {
+  const { id } = use(params);
+  const [klinik, setKlinik] = useState(null);
+
+  useEffect(() => {
+    const fetchKlinik = async () => {
+      try {
+        const response = await API.get(`/klinik/${id}`);
+        setKlinik(response.data);
+      } catch (error) {
+        console.error("Failed to fetch klinik data:", error);
+      }
+    };
+
+    fetchKlinik();
+  }, [id]);
+
+  const createAppointment = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Anda belum log in!");
+      return;
+    }
+
+    try {
+      const res = await API.post("/appointment", {
+        clinicId: id,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (res.status === 201) {
+        alert("Appointment created successfully!");
+      } else {
+        alert("Failed to create appointment!");
+      }
+    } catch (error) {
+      console.error("Failed to create appointment:", error.response?.data || error);
+      alert("Gagal membuat appointment!");
+    }
+  };
+
+  if (!klinik) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-slate-100">
@@ -19,45 +69,12 @@ export default async function KlinikPage(context) {
         id="form-pasien"
         className="w-full py-10 bg-gradient-to-bl from-[#d31027] via-[#ea384d] to-[#7e0d14]"
       >
-        <form className="max-w-lg mx-auto bg-slate-100 p-6 rounded-lg shadow-md">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
-            Formulir Pendaftaran Pasien
-          </h2>
-          <label className="block text-sm text-gray-800 mb-2" htmlFor="nama">
-            Nama
-          </label>
-          <input
-            type="text"
-            id="nama"
-            name="nama"
-            className="w-full p-3 border rounded-md focus:ring-2 focus:ring-[#ea384d] focus:outline-none mb-4"
-          />
-          <label className="block text-sm text-gray-800 mb-2" htmlFor="telp">
-            Nomor Telepon
-          </label>
-          <input
-            type="tel"
-            id="telp"
-            name="telp"
-            className="w-full p-3 border rounded-md focus:ring-2 focus:ring-[#ea384d] focus:outline-none mb-4"
-          />
-          <label className="block text-sm text-gray-800 mb-2" htmlFor="keluhan">
-            Keluhan
-          </label>
-          <textarea
-            id="keluhan"
-            name="keluhan"
-            rows={4}
-            className="w-full p-3 border rounded-md focus:ring-2 focus:ring-[#ea384d] focus:outline-none mb-6"
-            defaultValue={""}
-          />
-          <button
-            type="submit"
-            className="w-full bg-[#ea384d] text-white py-3 rounded-md text-sm font-medium hover:bg-red-600 transition"
-          >
-            Kirim
-          </button>
-        </form>
+        <button
+          className="bg-white text-red-500 px-4 py-2 rounded-lg shadow-md hover:bg-red-700 hover:text-white transition duration-200"
+          onClick={createAppointment}
+        >
+          Daftar Janji Temu
+        </button>
       </section>
     </div>
   );

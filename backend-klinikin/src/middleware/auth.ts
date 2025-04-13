@@ -1,22 +1,34 @@
-import { Request,Response,NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
 
-dotenv.config();
+const SECRETKEY = process.env.JWT_SECRET as string;
 
-const SECRETKEY = process.env.JWT_SECRET as string || "secret";
+export function authenticatePatient(req: Request, res: Response, next: NextFunction): any {
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(" ")[1];
 
-export async function verifyToken(req: Request, res: Response, next: NextFunction): Promise<void> {
-    const token = req.header("Authorization")?.split(" ")[1];
-    if (!token) {
-        res.status(401).json({ message: "Access Denied" });
-        return;
-    }
-    try {
-        const verified = jwt.verify(token, SECRETKEY);
-        (req as any).user = verified;
-        next();
-    } catch (error) {
-        res.status(400).json({ message: "Invalid Token" });
-    }
+  if (!token) return res.status(401).json({ message: "Token tidak ditemukan" });
+
+  try {
+    const decoded = jwt.verify(token, SECRETKEY) as { id: string };
+    (req as any).user = decoded;
+    next();
+  } catch (err) {
+    return res.status(403).json({ message: "Token tidak valid" });
+  }
+}
+
+export function authenticateClinic(req: Request, res: Response, next: NextFunction): any {
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) return res.status(401).json({ message: "Token tidak ditemukan" });
+
+  try {
+    const decoded = jwt.verify(token, SECRETKEY) as { id: string };
+    (req as any).clinic = decoded;
+    next();
+  } catch (err) {
+    return res.status(403).json({ message: "Token tidak valid" });
+  }
 }

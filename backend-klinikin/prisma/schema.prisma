@@ -58,7 +58,7 @@ model Appointment {
   patientId String
   clinic    Clinic   @relation(fields: [clinicId], references: [id])
   clinicId  String
-  date      DateTime
+  date      DateTime @default(now())
   status    String // Pending, Confirmed, Completed, Canceled
 }
 

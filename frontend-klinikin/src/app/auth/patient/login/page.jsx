@@ -23,8 +23,15 @@ export default function LoginPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await API.post("/login/patient", formData, {withCredentials: true});
-            router.push("/dashboard/patient");
+            const res = await API.post("/login/patient", formData, {withCredentials: true});
+            if (res.status === 200) {
+                const { data } = res;
+                localStorage.setItem("token", data.token);
+                router.push("/dashboard/patient");
+            } else {
+                alert("Login failed");
+            }
+            
         } catch (error) {
             console.error("Login failed:", error);
             alert("Login failed. Please check your credentials.");

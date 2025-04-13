@@ -1,26 +1,41 @@
 import { Router } from "express";
-import { getAllClinic, getOneClinic, updateClinic,getMyClinicProfile, getAllArticles, getMyProfilPatient  } from "../controller";
-import { registerKlinik,loginKlinik,registerPatient,loginPatient, logout } from "../controller/authController";
-import { verifyToken } from "../middleware/auth";
+import { getAllClinic, getOneClinic, getAllArticles,  } from "../controller/public";
+import { registerClinic,loginClinic,registerPatient,loginPatient, logout } from "../controller/authController";
+import { myClinicProfile, updateClinic  } from "../controller/klinik";
+import { myPatientProfile } from "../controller/patient";
+import { createAppointment, getMyAppointments, getClinicAppointments, updateAppointmentStatus } from "../controller/appointment";
+import { authenticateClinic, authenticatePatient } from "../middleware/auth";
 
 const router = Router();
 
+// 🔐 Klinik routes (yang spesifik ditaruh dulu)
+router.get("/klinik/me", authenticateClinic, myClinicProfile); 
+router.put("/klinik/:id", authenticateClinic, updateClinic);
 
-router.get("/all-klinik", getAllClinic); //✅
-router.get("/klinik/:id", getOneClinic); //✅
+// 🌐 Public routes
+router.get("/all-klinik", getAllClinic);
+router.get("/klinik/:id", getOneClinic); 
+router.get("/articles", getAllArticles); 
 
-router.post("/register/klinik", registerKlinik);
-router.post("/login/klinik", loginKlinik);
-router.get("/klinik/dashboard", verifyToken, getMyClinicProfile);
-router.put("/klinik/:id", verifyToken, updateClinic);
+// 🔐 Auth routes
+router.post("/register/klinik", registerClinic);
+router.post("/login/klinik", loginClinic);
 
 router.post("/register/patient", registerPatient);
 router.post("/login/patient", loginPatient);
-router.get("/patient/dashboard", verifyToken, getMyProfilPatient);
 
-router.get("/articles", getAllArticles);
+// 🔐 Dashboard Pasien
+router.get("/patient/dashboard", authenticatePatient, myPatientProfile);
 
-router.post("/logout", logout)
+// appointment routes
+router.post("/appointment", authenticatePatient, createAppointment);
+router.get("/appointment", authenticatePatient, getMyAppointments);
+router.get("/appointment-klinik", authenticateClinic, getClinicAppointments);
+router.patch("/appointment/:id", authenticateClinic, updateAppointmentStatus);
+
+// 🚪 Logout
+router.post("/logout", logout);
+
 
 
 

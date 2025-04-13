@@ -3,7 +3,6 @@ import "./globals.css";
 import Link from "next/link";
 import SvgComponent from "../components/SvgComponent";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -48,7 +47,10 @@ export default function RootLayout({ children }) {
             >
               Form Pasien
             </a>
-            <Link href="/auth" className="relative text-white font-medium text-xs transition-all bg-gradient-to-br from-[#232526] via-[#2b2b2c] to-[#17191a] px-3 py-2 rounded-lg overflow-hidden group flex items-center">
+            <Link
+              href="/auth"
+              className="relative text-white font-medium text-xs transition-all bg-gradient-to-br from-[#232526] via-[#2b2b2c] to-[#17191a] px-3 py-2 rounded-lg overflow-hidden group flex items-center"
+            >
               <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative group-hover:text-[#d31027]">Login</span>
             </Link>

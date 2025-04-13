@@ -145,7 +145,6 @@ export default async function Home() {
             </div>
           </section>
         </div>
-        {/* form Pasien */}
       </div>
     </main>
   );

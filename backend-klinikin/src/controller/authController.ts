@@ -5,160 +5,77 @@ import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 dotenv.config();
 
-const SECRETKEY = process.env.JWT_SECRET;
+const SECRETKEY = process.env.JWT_SECRET!;
 const prisma = new PrismaClient();
 
-export async function registerPatient(req: Request,res: Response) {
-    try {
-        const { name, email, password } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const data = await prisma.patient.create({
-            data: {
-                name: name,
-                password: hashedPassword,
-                email: email,
-            }
-        });
 
-        res.status(200).json({
-            status: "success",
-            message: "Register berhasil",
-            data: data
-        })
+export async function registerPatient(req: Request, res: Response) {
+  try {
+    const { email, password, name } = req.body;
+    const hashed = await bcrypt.hash(password, 10);
 
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            status: "error",
-            message: "Internal server error"
-        })
-    }
+    const patient = await prisma.patient.create({
+      data: { email, password: hashed, name },
+    });
+
+    res.status(201).json({ message: "Registrasi berhasil", patient });
+  } catch (err) {
+    res.status(500).json({ message: "Gagal registrasi pasien" });
+  }
 }
 
-export async function loginPatient(req: Request,res: Response): Promise<any> {
-    try {
-        const { email, password } = req.body;
-        const data = await prisma.patient.findUnique({
-            where: {
-                email: email
-            }
-        });
+export async function loginPatient(req: Request, res: Response): Promise<any> {
+  const { email, password } = req.body;
+  const patient = await prisma.patient.findUnique({ where: { email } });
 
-        if (!data) {
-            return res.status(400).json({
-                status: "error",
-                message: "Email tidak ditemukan"
-            })
-        }
+  if (!patient) return res.status(400).json({ message: "Email tidak ditemukan" });
 
-        const isValidPassword = await bcrypt.compare(password, data.password);
+  const match = await bcrypt.compare(password, patient.password);
+  if (!match) return res.status(400).json({ message: "Password salah" });
 
-        if (!isValidPassword) {
-            return res.status(400).json({
-                status: "error",
-                message: "Password salah"
-            })
-        }
-
-        const jwtToken = jwt.sign({ id: data.id }, SECRETKEY as string, { expiresIn: "1d" });
-
-        res.cookie("token", jwtToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
-            maxAge: 24 * 60 * 60 * 1000 // 1 day
-        })
-
-        res.status(200).json({
-            status: "success",
-            message: "Login berhasil",
-        })
-
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            status: "error",
-            message: "Internal server error"
-        })
-    }
+  if (!SECRETKEY) {
+    return res.status(500).json({ message: "JWT secret key is not defined" });
+  }
+  const token = jwt.sign({ id: patient.id }, SECRETKEY, { expiresIn: "1d" });
+  res.json({ message: "Login berhasil", token });
 }
 
-export async function registerKlinik(req: Request, res: Response) {
+
+export async function registerClinic(req: Request, res: Response): Promise<void> {
     try {
-        const { name, password, email, address, location } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const data = await prisma.clinic.create({
-            data: {
-                name,
-                password: hashedPassword,
-                email,
-                address,
-                location,
-            }
-        });
-
-        res.status(200).json({
-            status: "success",
-            message: "Register klinik berhasil",
-            data: data
-        })
-
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            status: "error",
-            message: "Internal server error"
-        })
+      const { email, password, name, address, location } = req.body;
+      const hashed = await bcrypt.hash(password, 10);
+  
+      const clinic = await prisma.clinic.create({
+        data: {
+          email,
+          password: hashed,
+          name,
+          address,
+          location,
+        },
+      });
+  
+      res.status(201).json({ message: "Registrasi klinik berhasil", clinic });
+    } catch (err) {
+      res.status(500).json({ message: "Gagal registrasi klinik" });
     }
-}
-
-export async function loginKlinik(req: Request, res: Response): Promise<any> {
-    try {
-        const { email, password } = req.body;
-        const data = await prisma.clinic.findUnique({
-            where: {
-                email: email
-            }
-        });
-
-        if (!data) {
-            return res.status(400).json({
-                status: "error",
-                message: "Email tidak ditemukan"
-            })
-        }
-
-        const isValidPassword = await bcrypt.compare(password, data.password);
-
-        if (!isValidPassword) {
-            return res.status(400).json({
-                status: "error",
-                message: "Password salah"
-            })
-        }
-
-        const jwtToken = jwt.sign({ id: data.id }, SECRETKEY as string, { expiresIn: "1d" });
-
-        res.cookie("token", jwtToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
-            maxAge: 24 * 60 * 60 * 1000 // 1 day
-        })
-
-        res.status(200).json({
-            status: "success",
-            message: "Login berhasil",
-        })
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            status: "error",
-            message: "Internal server error"
-        })
-    }
-}
-
+  }
+  
+  export async function loginClinic(req: Request, res: Response): Promise<any> {
+    const { email, password } = req.body;
+    const clinic = await prisma.clinic.findUnique({ where: { email } });
+  
+    if (!clinic) return res.status(400).json({ message: "Email tidak ditemukan" });
+  
+    const match = await bcrypt.compare(password, clinic.password);
+    if (!match) return res.status(400).json({ message: "Password salah" });
+  
+    const token = jwt.sign({ id: clinic.id }, SECRETKEY, { expiresIn: "1d" });
+    
+    res.json({ message: "Login berhasil", token });
+  }
+  
 export async function logout(req: Request, res: Response) {
     try {
         res.clearCookie("token");
