@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import router from "./routes";
 import cors from "cors";
 import helmet from "helmet";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -10,9 +11,12 @@ const app = express();
 const PORT = process.env.PORT || 4001;
 
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", "http://192.168.0.113:8081"], // Ganti dengan URL frontend Anda
   credentials: true,
-}))
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+app.use(cookieParser());
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

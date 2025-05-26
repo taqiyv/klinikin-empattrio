@@ -3,9 +3,13 @@ import jwt from "jsonwebtoken";
 
 const SECRETKEY = process.env.JWT_SECRET as string;
 
+// Middleware untuk mendapatkan token dari cookie
+const getTokenFromCookie = (req: Request) => {
+  return req.cookies?.token;
+};
+
 export function authenticatePatient(req: Request, res: Response, next: NextFunction): any {
-  const authHeader = req.headers.authorization;
-  const token = authHeader && authHeader.split(" ")[1];
+  const token = getTokenFromCookie(req) || req.headers.authorization?.split(" ")[1];
 
   if (!token) return res.status(401).json({ message: "Token tidak ditemukan" });
 
@@ -19,8 +23,7 @@ export function authenticatePatient(req: Request, res: Response, next: NextFunct
 }
 
 export function authenticateClinic(req: Request, res: Response, next: NextFunction): any {
-  const authHeader = req.headers.authorization;
-  const token = authHeader && authHeader.split(" ")[1];
+  const token = getTokenFromCookie(req) || req.headers.authorization?.split(" ")[1];
 
   if (!token) return res.status(401).json({ message: "Token tidak ditemukan" });
 

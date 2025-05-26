@@ -12,6 +12,7 @@ model Patient {
   email        String        @unique
   password     String
   name         String?
+  phoneNumber  String?
   reviews      Review[]
   appointments Appointment[]
 }

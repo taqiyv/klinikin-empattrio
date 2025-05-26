@@ -1,9 +1,10 @@
-import axios from "axios";
 import ClinicCard from "../components/ClinicCard";
 import FaqCard from "../components/FaqCard";
 import ArticlesCard from "../components/ArticlesCard";
 import SvgComponent from "../components/SvgComponent";
 import API from "@/lib/api";
+import Footer from "@/components/Footer";
+import NavbarUmum from "@/components/NavbarUmum";
 
 export default async function Home() {
   const response = await API.get("/all-klinik");
@@ -13,6 +14,7 @@ export default async function Home() {
 
   return (
     <main>
+      <NavbarUmum />
       {/* main */}
       <div className="p bg-slate-100">
         {/* home */}
@@ -146,6 +148,7 @@ export default async function Home() {
           </section>
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

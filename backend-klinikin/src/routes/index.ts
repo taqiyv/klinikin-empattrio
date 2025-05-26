@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { getAllClinic, getOneClinic, getAllArticles,  } from "../controller/public";
-import { registerClinic,loginClinic,registerPatient,loginPatient, logout } from "../controller/authController";
+import { registerClinic,loginClinic,registerPatient,loginPatient, logout, authCheck } from "../controller/authController";
 import { myClinicProfile, updateClinic  } from "../controller/klinik";
-import { myPatientProfile } from "../controller/patient";
+import { myPatientProfile, updatePatientProfile } from "../controller/patient";
 import { createAppointment, getMyAppointments, getClinicAppointments, updateAppointmentStatus } from "../controller/appointment";
 import { authenticateClinic, authenticatePatient } from "../middleware/auth";
 
@@ -25,7 +25,8 @@ router.post("/register/patient", registerPatient);
 router.post("/login/patient", loginPatient);
 
 // 🔐 Dashboard Pasien
-router.get("/patient/dashboard", authenticatePatient, myPatientProfile);
+router.get("/patient/me", authenticatePatient, myPatientProfile);
+router.put("/patient/update", authenticatePatient, updatePatientProfile);
 
 // appointment routes
 router.post("/appointment", authenticatePatient, createAppointment);
@@ -36,6 +37,8 @@ router.patch("/appointment/:id", authenticateClinic, updateAppointmentStatus);
 // 🚪 Logout
 router.post("/logout", logout);
 
+// auth check
+router.get("/auth-check", authCheck, authenticatePatient);
 
 
 
