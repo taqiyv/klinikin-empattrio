@@ -208,9 +208,9 @@ export default function Footer () {
                     Daftarkan Klinik Kamu Sekarang
                   </h4>
                   <div className="">
-                    <button className="bg-[#ea384d] hover:bg-[#6d1b25] text-white px-4 py-1 rounded-lg transition-colors text-sm font-semibold">
+                    <Link href="/klinik-auth/register" className="bg-[#ea384d] hover:bg-[#6d1b25] text-white px-4 py-1 rounded-lg transition-colors text-sm font-semibold">
                       Daftar
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

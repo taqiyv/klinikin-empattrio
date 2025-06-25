@@ -13,8 +13,10 @@ model Patient {
   password     String
   name         String?
   phoneNumber  String?
+  imageProfile String?       @default("https://i.pravatar.cc/300")
   reviews      Review[]
   appointments Appointment[]
+  createdAt    DateTime?     @default(now())
 }
 
 model Clinic {
@@ -34,6 +36,7 @@ model Clinic {
   appointments   Appointment[]
   statistics     ClinicStatistics?
   Article        Article[]
+  createdAt      DateTime?         @default(now())
 }
 
 model Review {

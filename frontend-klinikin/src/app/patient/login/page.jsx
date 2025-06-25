@@ -35,7 +35,7 @@ export default function LoginPage() {
 
       if (res.status === 200) {
         // Lakukan hard redirect untuk memastikan cookie terbaca
-        window.location.href = "/dashboard/patient";
+        window.location.href = "/";
       } else {
         alert(res.data?.message || "Login failed");
       }
@@ -51,7 +51,8 @@ export default function LoginPage() {
   return (
     <>
       <NavbarUmum />
-      <div className="flex flex-col items-center justify-center h-screen bg-slate-100 pb-7">
+      <div className="flex items-center justify-between h-screen bg-slate-100 pb-7">
+        <div className="shadow-md px-7 py-5 rounded-lg ml-40 bg-white pb-9">
         <h1 className="text-2xl font-bold text-slate-700 mb-4">
           Login KlinikIn sebagai user
         </h1>
@@ -61,7 +62,7 @@ export default function LoginPage() {
             type="email"
             name="email"
             placeholder="Email"
-            className="border border-slate-300 rounded-lg px-4 py-2"
+            className="border border-slate-300 rounded-lg px-4 py-2 text-sm"
             onChange={handleChange}
             required
           />
@@ -69,18 +70,18 @@ export default function LoginPage() {
             type="password"
             name="password"
             placeholder="Password"
-            className="border border-slate-300 rounded-lg px-4 py-2"
+            className="border border-slate-300 rounded-lg px-4 py-2 text-sm"
             onChange={handleChange}
             required
           />
           <button
             type="submit"
-            className="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition duration-200"
+            className="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600 transition duration-200 text-sm"
           >
             Login
           </button>
         </form>
-        <p className="text-slate-600 mt-4">
+        <p className="text-slate-600 mt-4 text-sm">
           Belum punya akun?{" "}
           <Link
             href="/auth/patient/register"
@@ -90,6 +91,11 @@ export default function LoginPage() {
           </Link>
         </p>
       </div>
+      <div className="w-96 h-96 bg-red-400 mr-40">
+        gambar
+      </div>
+      </div>
+      
       <Footer />
     </>
   );

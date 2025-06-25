@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import API from "@/lib/api";
 
 export default function ProfilePage() {
@@ -17,12 +17,14 @@ export default function ProfilePage() {
   const [profile, setProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     async function fetchProfile() {
       try {
         const res = await API.get("/klinik/me", { withCredentials: true });
-        
         if (res.status === 200) {
           const data = res.data.data;
           setProfile(data);
@@ -66,12 +68,12 @@ export default function ProfilePage() {
   async function handleUpdate(e) {
     e.preventDefault();
     setIsUpdating(true);
-    
+
     try {
-      const res = await API.put(`/klinik/${profile.id}`, dataForm, { 
-        withCredentials: true 
+      const res = await API.put(`/klinik/${profile.id}`, dataForm, {
+        withCredentials: true,
       });
-      
+
       if (res.status === 200) {
         alert("Profil klinik berhasil diperbarui!");
         setProfile(res.data.data);
@@ -83,6 +85,37 @@ export default function ProfilePage() {
       alert("Terjadi kesalahan saat memperbarui profil");
     } finally {
       setIsUpdating(false);
+    }
+  }
+
+  async function handlePhotoUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    setIsUploading(true);
+    setUploadError("");
+    try {
+      const formData = new FormData();
+      formData.append("photo", file);
+
+      const res = await API.post("/klinik/upload-image", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      });
+
+      if (res.status === 200 && res.data.data && res.data.data.url) {
+        setDataForm((prev) => ({
+          ...prev,
+          images: res.data.data.url,
+        }));
+        alert("Foto berhasil diupload!");
+      } else {
+        setUploadError("Gagal upload foto");
+      }
+    } catch (err) {
+      setUploadError("Gagal upload foto");
+    } finally {
+      setIsUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
     }
   }
 
@@ -103,7 +136,29 @@ export default function ProfilePage() {
       <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
         <h1 className="text-2xl font-bold text-slate-700 mb-4">Profil Klinik</h1>
         <p className="text-slate-600 mb-6">Lengkapi data profil klinik Anda</p>
-        
+
+        {/* Upload Photo */}
+        <div className="mb-6">
+          <label className="block text-slate-700 font-semibold mb-2">Foto Klinik</label>
+          {dataForm.images && (
+            <img
+              src={dataForm.images}
+              alt="Foto Klinik"
+              className="mb-2 rounded-lg w-40 h-40 object-cover border"
+            />
+          )}
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handlePhotoUpload}
+            ref={fileInputRef}
+            className="block"
+            disabled={isUploading}
+          />
+          {isUploading && <p className="text-slate-500 text-sm mt-1">Mengupload...</p>}
+          {uploadError && <p className="text-red-500 text-sm mt-1">{uploadError}</p>}
+        </div>
+
         <form className="space-y-4" onSubmit={handleUpdate}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
@@ -170,7 +225,7 @@ export default function ProfilePage() {
           <div className="space-y-2">
             <label className="block text-slate-700 font-semibold">Link WhatsApp</label>
             <input
-              type="url"
+              type="text"
               name="whatsappLink"
               value={dataForm.whatsappLink}
               onChange={handleChange}

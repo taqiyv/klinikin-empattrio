@@ -1,21 +1,16 @@
 import Link from "next/link";
 
-export default function KlinikLayout({ children }) {
+export default function KlinikLayout({ children, klinikName }) {
   return (
     <div className="flex">
       <aside className="w-64 bg-slate-900 text-white min-h-screen p-5">
-        <h1 className="text-lg font-bold mb-5">Klinik Tong Seng</h1>
+        <h1 className="text-lg font-bold mb-5">{klinikName}</h1>
         <ul>
           <li className="mb-3">
             <Link href="/dashboard/klinik" className="block p-2 hover:bg-slate-600 focus:bg-[#ea384d] rounded">
               Beranda
             </Link>
           </li>
-          {/* <li className="mb-3">
-            <a href="" className="block p-2 hover:bg-slate-600 focus:bg-[#ea384d] rounded">
-              Janji Temu
-            </a>
-          </li> */}
           <li>
             <Link
               href="/dashboard/klinik/profile"

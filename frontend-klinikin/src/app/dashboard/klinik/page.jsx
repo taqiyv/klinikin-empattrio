@@ -46,7 +46,7 @@ export default function DashboardPage() {
   const logout = async () => {
     try {
       await API.post("/logout", {}, { withCredentials: true });
-      window.location.href = "/auth/klinik/login";
+      window.location.href = "/";
     } catch (error) {
       console.error("Logout error:", error);
     }

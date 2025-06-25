@@ -134,3 +134,28 @@ export async function myClinicProfile(req: Request, res: Response): Promise<any>
         });
     }
 }
+
+export async function uploadClinicImage(req: Request, res: Response): Promise<any> {
+  try {
+    const clinicId = (req as any).clinic.id;
+
+    if (!req.file) {
+      return res.status(400).json({ message: "File tidak ditemukan" });
+    }
+
+    const imageUrl = `http://localhost:${process.env.PORT}/uploads/${req.file.filename}`;
+
+    const update = await prisma.clinic.update({
+      where: { id: clinicId },
+      data: { images: imageUrl },
+    });
+
+    res.status(200).json({
+      message: "Foto berhasil diunggah",
+      data: {"url": imageUrl},
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Gagal upload foto" });
+  }
+}

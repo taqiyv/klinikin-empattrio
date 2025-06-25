@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 import dotenv from "dotenv";
 dotenv.config();
 
-const SECRETKEY = process.env.JWT_SECRET;
 
 const prisma = new PrismaClient();
 
@@ -15,7 +14,8 @@ export async function getAllClinic(req: Request, res: Response) {
           select: {
             reviews: true,
           },
-        }, specialization: true
+        }, specialization: true,
+        reviews: true,
       },
     });
 

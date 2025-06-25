@@ -33,12 +33,12 @@ export default function RegisterPatient() {
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
             <div className="bg-white shadow-md rounded-lg p-8 w-96">
-                <h2 className="text-2xl font-bold mb-6 text-center">Register user</h2>
-                <form className="space-y-4" onSubmit={handleSubmit}>
+                <h2 className="text-2xl font-bold mb-6 text-center">Register Pasien</h2>
+                <form className="space-y-4 text-sm" onSubmit={handleSubmit}>
                     <input type="text" name="name" placeholder="Nama " className="w-full border border-gray-300 rounded-md p-2" onChange={handleChange} required />
                     <input type="email" name="email" placeholder="Email" className="w-full border border-gray-300 rounded-md p-2" onChange={handleChange} required />
                     <input type="password" name="password" placeholder="Password" className="w-full border border-gray-300 rounded-md p-2" onChange={handleChange} required />
-                    <button type="submit" className="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-200">Register</button>
+                    <button type="submit" className="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-200 mt-5">Register</button>
                 </form>
             </div>
         </div>

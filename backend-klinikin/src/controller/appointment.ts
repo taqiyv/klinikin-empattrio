@@ -7,13 +7,14 @@ const prisma = new PrismaClient();
 
 export async function createAppointment(req: Request, res: Response) {
   const patientId = (req as any).user.id;
-  const { clinicId } = req.body;
+  const { clinicId, date } = req.body;
 
   try {
     const appointment = await prisma.appointment.create({
       data: {
         clinicId,
         patientId,
+        date: new Date(date),
         status: "Pending",
       },
     });
@@ -122,4 +123,27 @@ export async function updateAppointmentStatus(req: Request, res: Response) {
     });
   }
 }
+
+export async function deleteAppointment(req: Request, res: Response) {
+  const { id } = req.params;
+
+  try {
+    await prisma.appointment.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    res.status(200).json({
+      message: "Appointment berhasil dihapus",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error",
+    });
+  }
+}
+
 

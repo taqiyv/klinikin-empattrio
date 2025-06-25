@@ -60,7 +60,7 @@ export default function PatientDashboard() {
           </section>
 
           <div className="flex justify-center -mt-4">
-            <div className="bg-gradient-to-br from-white to-slate-200 my-5 w-[90%] rounded-xl px-4 pb-5 border border-slate-300">
+          <div className="bg-gradient-to-br from-white to-slate-200 my-5 w-[90%] rounded-xl px-4 pb-5 border border-slate-300">
               <h1 className="pt-5 font-bold text-xl text-slate-700 mx-auto mb-5">
                 Janji Temu
               </h1>
@@ -76,6 +76,7 @@ export default function PatientDashboard() {
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ export default function NavbarPasien() {
   const logout = async () => {
     try {
       await API.post("/logout", {}, { withCredentials: true });
-      window.location.href = "/auth/patient/login";
+      window.location.href = "/";
     } catch (error) {
       console.error("Logout error:", error);
     }
@@ -37,7 +37,7 @@ export default function NavbarPasien() {
           Janji Temu
         </a>
         <Link
-          href="/auth"
+          href="/"
           className="relative text-white font-medium text-xs transition-all bg-gradient-to-br from-[#232526] via-[#2b2b2c] to-[#17191a] px-3 py-2 rounded-lg overflow-hidden group flex items-center"
         >
           <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

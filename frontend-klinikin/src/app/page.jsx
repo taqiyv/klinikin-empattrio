@@ -5,6 +5,7 @@ import SvgComponent from "../components/SvgComponent";
 import API from "@/lib/api";
 import Footer from "@/components/Footer";
 import NavbarUmum from "@/components/NavbarUmum";
+import Link from "next/link";
 
 export default async function Home() {
   const response = await API.get("/all-klinik");
@@ -38,21 +39,23 @@ export default async function Home() {
           </div>
         </section>
         {/* informasi kesehatan */}
-        <div className="h-96 flex justify-center -mt-4">
+        <div id="artikel" className="h-96 flex justify-center -mt-4">
           <div className="bg-gradient-to-br from-white to-slate-200 my-5 w-[90%] rounded-xl px-4">
             <h1 className="pt-5 font-bold text-xl text-slate-700">
               Informasi Kesehatan
             </h1>
             <div className="grid grid-cols-4 gap-4 mt-4">
-              {articles?.data?.map((article) => (
+              {articles?.data?.slice(0, 4).map((article) => (
                 <ArticlesCard
                   key={article.id}
                   image={article.image}
                   title={article.title}
                   content={article.content}
+                  id={article.id}
                 />
               ))}
             </div>
+            <Link className="text-xl font-bold hover:text-red-500" href={'/articles'} >Browse Semua Artikel</Link>
           </div>
         </div>
         {/* rekomendasi klinik */}
